@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Loginaccount</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Username</th>
+                <td>{{ loginAccount.username }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ loginAccount.password }}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{% if loginAccount.isActive %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{% if loginAccount.created %}{{ loginAccount.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{% if loginAccount.updated %}{{ loginAccount.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Loginid</th>
+                <td>{{ loginAccount.loginId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cms2_user_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('cms2_user_edit', { 'id': loginAccount.loginId }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

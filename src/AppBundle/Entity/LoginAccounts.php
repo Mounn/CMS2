@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * LoginAccounts
@@ -11,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="login_accounts")
  * @ORM\Entity
  */
-class LoginAccounts implements UserInterface
+class LoginAccounts 
 {
     /**
      * @var string
@@ -107,10 +106,6 @@ class LoginAccounts implements UserInterface
         return $this->password;
     }
     
-    public function getSalt(){
-        return null;
-    }
-
     /**
      * Set isActive
      *
@@ -192,4 +187,5 @@ class LoginAccounts implements UserInterface
     {
         return $this->loginId;
     }
+    
 }

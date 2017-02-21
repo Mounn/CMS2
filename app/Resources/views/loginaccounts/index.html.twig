@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Loginaccounts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Isactive</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th>Loginid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for loginAccount in loginAccounts %}
+            <tr>
+                <td><a href="{{ path('cms2_user_show', { 'id': loginAccount.loginId }) }}">{{ loginAccount.username }}</a></td>
+                <td>{{ loginAccount.password }}</td>
+                <td>{% if loginAccount.isActive %}Yes{% else %}No{% endif %}</td>
+                <td>{% if loginAccount.created %}{{ loginAccount.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if loginAccount.updated %}{{ loginAccount.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ loginAccount.loginId }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cms2_user_show', { 'id': loginAccount.loginId }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cms2_user_edit', { 'id': loginAccount.loginId }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cms2_user_new') }}">Create a new loginAccount</a>
+        </li>
+    </ul>
+{% endblock %}
