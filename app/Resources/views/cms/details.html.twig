@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %} 
+    <a class="btn btn-default" href="/">Back to CMS</a>
+    <hr>
+    <h2 class="page-header">{{cms.name}}</h2>
+    <ul class="list-group">
+    <li class="list-group-item">Category: {{cms.category}}</li<>
+    <li class="list-group-item">Priority: {{cms.priority}}</li<>
+    <li class="list-group-item">Due Date: <strong>{{cms.dueDate|date('F j, Y, g:i a')}}</strong></li<>
+    </ul>
+    <p>
+        {{cms.description}}
+    </p>
+{% endblock %}

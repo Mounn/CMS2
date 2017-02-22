@@ -1,4 +1,0 @@
-app_cms2_user:
-    resource: "@AppBundle/Resources/config/routing/loginaccounts.php"
-    prefix:   /cms2/user
-

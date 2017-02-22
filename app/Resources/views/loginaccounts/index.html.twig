@@ -18,7 +18,7 @@
         <tbody>
         {% for loginAccount in loginAccounts %}
             <tr>
-                <td><a href="{{ path('cms2_user_show', { 'id': loginAccount.loginId }) }}">{{ loginAccount.username }}</a></td>
+                <td><a href="{{ path('cms_user_show', { 'id': loginAccount.loginId }) }}">{{ loginAccount.username }}</a></td>
                 <td>{{ loginAccount.password }}</td>
                 <td>{% if loginAccount.isActive %}Yes{% else %}No{% endif %}</td>
                 <td>{% if loginAccount.created %}{{ loginAccount.created|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -27,10 +27,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('cms2_user_show', { 'id': loginAccount.loginId }) }}">show</a>
+                            <a href="{{ path('cms_user_show', { 'id': loginAccount.loginId }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('cms2_user_edit', { 'id': loginAccount.loginId }) }}">edit</a>
+                            <a href="{{ path('cms_user_edit', { 'id': loginAccount.loginId }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -41,7 +41,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('cms2_user_new') }}">Create a new loginAccount</a>
+            <a href="{{ path('cms_user_new') }}">Create a new loginAccount</a>
         </li>
     </ul>
 {% endblock %}

@@ -3,18 +3,24 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\LoginAccounts;
+use AppBundle\Form\LoginAccountsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Loginaccount controller.
  *
+ * @Route("cms/user")
  */
 class LoginAccountsController extends Controller
 {
     /**
      * Lists all loginAccount entities.
      *
+     * @Route("/", name="cms_user_index")
+     * @Method("GET")
      */
     public function indexAction()
     {
@@ -30,10 +36,13 @@ class LoginAccountsController extends Controller
     /**
      * Creates a new loginAccount entity.
      *
+     * @Route("/new", name="cms_user_new")
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $loginAccount = new Loginaccount();
+        $loginAccount = new LoginAccounts();     
+        
         $form = $this->createForm('AppBundle\Form\LoginAccountsType', $loginAccount);
         $form->handleRequest($request);
 
@@ -42,7 +51,7 @@ class LoginAccountsController extends Controller
             $em->persist($loginAccount);
             $em->flush($loginAccount);
 
-            return $this->redirectToRoute('cms2_user_show', array('id' => $loginAccount->getId()));
+            return $this->redirectToRoute('cms_user_show', array('id' => $loginAccount->getId()));
         }
 
         return $this->render('loginaccounts/new.html.twig', array(
@@ -54,6 +63,8 @@ class LoginAccountsController extends Controller
     /**
      * Finds and displays a loginAccount entity.
      *
+     * @Route("/{id}", name="cms_user_show")
+     * @Method("GET")
      */
     public function showAction(LoginAccounts $loginAccount)
     {
@@ -68,6 +79,8 @@ class LoginAccountsController extends Controller
     /**
      * Displays a form to edit an existing loginAccount entity.
      *
+     * @Route("/{id}/edit", name="cms_user_edit")
+     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, LoginAccounts $loginAccount)
     {
@@ -78,7 +91,7 @@ class LoginAccountsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('cms2_user_edit', array('id' => $loginAccount->getId()));
+            return $this->redirectToRoute('cms_user_edit', array('id' => $loginAccount->getId()));
         }
 
         return $this->render('loginaccounts/edit.html.twig', array(
@@ -91,6 +104,8 @@ class LoginAccountsController extends Controller
     /**
      * Deletes a loginAccount entity.
      *
+     * @Route("/{id}", name="cms_user_delete")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, LoginAccounts $loginAccount)
     {
@@ -103,7 +118,7 @@ class LoginAccountsController extends Controller
             $em->flush($loginAccount);
         }
 
-        return $this->redirectToRoute('cms2_user_index');
+        return $this->redirectToRoute('cms_user_index');
     }
 
     /**
@@ -116,7 +131,7 @@ class LoginAccountsController extends Controller
     private function createDeleteForm(LoginAccounts $loginAccount)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('cms2_user_delete', array('id' => $loginAccount->getId())))
+            ->setAction($this->generateUrl('cms_user_delete', array('id' => $loginAccount->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
