@@ -14,7 +14,9 @@ class LoginAccountsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username')->add('password')->add('isActive')->add('created')->add('updated')        ;
+        $builder->add('username')->add('password')->add('isActive')->add('created')->add('updated');
+        
+        
     }
     
     /**

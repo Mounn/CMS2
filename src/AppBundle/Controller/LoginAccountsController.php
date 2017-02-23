@@ -41,7 +41,8 @@ class LoginAccountsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $loginAccount = new LoginAccounts();     
+        $loginAccount = new LoginAccounts();
+       
         
         $form = $this->createForm('AppBundle\Form\LoginAccountsType', $loginAccount);
         $form->handleRequest($request);
